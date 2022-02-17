@@ -1,0 +1,207 @@
+<html>
+<body>
+
+Notes:
+<br>
+<textarea id="textBox" rows="25" cols="10">
+a....
+.b...
+a.c..
+.bc..
+...d.
+....e
+..c..
+.....
+a....
+a....
+.b...
+..c..
+..cd.
+.....
+.....
+.b.d.
+....e
+a.c..
+..c..
+.bc..
+a..d.   
+</textarea>
+<button id="Play" onclick="read()">Play</button>
+<br>
+<br>
+Milliseconds Between Notes:
+<br>
+<textarea id = "tempoBox" rows = "1", cols="10">
+380
+</textarea>
+<button id="SetTempo" onclick="setTempo()">Set ms</button>
+<br>
+<br>
+Compiled Output:
+<br>
+<textarea id="compBox" rows="25" cols = "50"></textarea>
+
+<script>
+
+    compiledOut = "";
+
+    const uhh = new Audio("https://docs.google.com/uc?id=11Ild1Qp5DF-hPQiqNXdIDprG_3ZsKmDw&export=open");
+    const uhhhigh = new Audio("https://docs.google.com/uc?id=1coJ-ebQOlDOrj0Lh7la-Wh8vkhqQXIoi&export=open");
+    const uhhlow = new Audio("https://docs.google.com/uc?id=1VV8RIdHdVnW9AX1JUgCNEzitm-i0Vogi&export=open");
+    const UHH = new Audio("https://docs.google.com/uc?id=1sJfCBSMuRky8lTIjIK3y6WMBQ0NWWV9U&export=open");
+    const crackfoo = new Audio("https://docs.google.com/uc?id=1Z1FfduCw3_zr8c06IimrtSKgePPPjFzV&export=open");
+
+    // ensure we have enough copies of the sound to play as many as needed at the same time
+    // note: using new Audio and loading from URL makes the timing unstable since it's slow to load.
+    uhhList = [];
+    uhhhighList = [];
+    uhhlowList = [];
+    UHHList = [];
+    crackfooList = [];
+    const numuhhs = 2;
+    const numcrackfoos = 5;
+    for (i = 0; i < numuhhs; ++i)
+    {
+        uhhList.push(uhh.cloneNode());
+        uhhhighList.push(uhhhigh.cloneNode());
+        uhhlowList.push(uhhlow.cloneNode());
+        UHHList.push(UHH.cloneNode());
+    }
+    for (i = 0; i < numcrackfoos; ++i)
+    {
+        crackfooList.push(crackfoo.cloneNode());
+    }
+    // enable the Play button when all audio is ready
+
+    uhhReady = false;
+    uhhhighReady = false;
+    uhhlowReady = false;
+    UHHReady = false;
+    crackfooReady = false;
+
+    uhhList[numuhhs-1].addEventListener("canplaythrough", event => {
+        uhhReady = true;
+    })
+    uhhhighList[numuhhs-1].addEventListener("canplaythrough", event => {
+        uhhhighReady = true;
+    })
+    uhhlowList[numuhhs-1].addEventListener("canplaythrough", event => {
+        uhhlowReady = true;
+    })  
+    UHHList[numuhhs-1].addEventListener("canplaythrough", event => {
+        UHHReady = true;
+    })
+    crackfooList[numcrackfoos-1].addEventListener("canplaythrough", event => {
+        crackfooReady = true;
+    })
+    // Done loading in audio copies
+
+    setTempo();
+
+    function setTempo() // keep time increment at a minimum of 100ms
+    {
+        tempo = parseInt(document.getElementById("tempoBox").value) 
+        tempo = tempo < 250 ? 250 : tempo;
+        document.getElementById("tempoBox").value = tempo;
+    }
+
+    // read the lines and play the sounds according to their line
+    function read()
+    {
+        uhh.play();
+        if (!uhhReady || !uhhhighReady || !uhhlowReady || !UHHReady || !crackfooReady)
+        {
+            alert("Sounds Loading...");
+            return;
+        }
+
+        compiledOut = "<html>\n<head>\nCompiled\n</head>\n<body></body>\n" +
+                    "<button onclick=\"playAll()\">Play</button>\n<script>\n" + 
+                    "const uhh = new Audio(\"https://docs.google.com/uc?id=11Ild1Qp5DF-hPQiqNXdIDprG_3ZsKmDw&export=open\");\n" +
+                    "const uhhhigh = new Audio(\"https://docs.google.com/uc?id=1coJ-ebQOlDOrj0Lh7la-Wh8vkhqQXIoi&export=open\");\n" +
+                    "const uhhlow = new Audio(\"https://docs.google.com/uc?id=1VV8RIdHdVnW9AX1JUgCNEzitm-i0Vogi&export=open\");\n" +
+                    "const UHH = new Audio(\"https://docs.google.com/uc?id=1sJfCBSMuRky8lTIjIK3y6WMBQ0NWWV9U&export=open\");\n" +
+                    "const crackfoo = new Audio(\"https://docs.google.com/uc?id=1Z1FfduCw3_zr8c06IimrtSKgePPPjFzV&export=open\");\n" +
+                    "function play(sound, time) {\n" +
+                    "\tsetTimeout(function() {sound.play();}, time);\n" +
+                    "}\n"+
+                    "uhhReady = false;\n" + 
+                    "uhhhighReady = false;\n" +
+                    "uhhlowReady = false;\n" +
+                    "UHHReady = false;\n" +
+                    "crackfooReady = false;\n"+
+                    "uhh.addEventListener(\"canplaythrough\", event => {\n" +
+                        "\tuhhReady = true;\n" +
+                    "})\n" +
+                    "uhhhigh.addEventListener(\"canplaythrough\", event => {\n" +
+                        "\tuhhhighReady = true;\n" +
+                    "})\n" +
+                    "uhhlow.addEventListener(\"canplaythrough\", event => {\n" +
+                        "\tuhhlowReady = true;\n" +
+                    "})\n" +
+                    "UHH.addEventListener(\"canplaythrough\", event => {\n" +
+                        "\tUHHReady = true;\n" +
+                    "})\n" +
+                    "crackfoo.addEventListener(\"canplaythrough\", event => {\n" +
+                        "\tcrackfooReady = true;\n" +
+                    "})\n" +
+                    "function playAll() {\n"+
+                    "\tif (!uhhReady || !uhhhighReady || !uhhlowReady || !UHHReady || !crackfooReady) {\n" +
+                        "\t\talert(\"Sounds Loading...\");\n" +
+                        "\t\treturn;\n" +
+                    "\t}\n";
+
+        text = document.getElementById("textBox").value;
+        lines = text.split(/\r?\n/)
+
+        time = 0;
+        for (i=0; i < lines.length; ++i)
+        {
+            line = lines[i];
+
+            getuhh = i%numuhhs;
+            getcrackfoo = i%numcrackfoos;
+
+            if(line[0] == 'A' || line[0] == 'a')
+            {
+                play(uhhList[getuhh], time);
+                compiledOut+="\tplay(uhh,"+time+");\n"
+            }
+            if(line[1] == 'B' || line[1] == 'b')
+            {
+                play(uhhhighList[getuhh], time);
+                compiledOut+="\tplay(uhhhigh,"+time+");\n"
+            }
+            if(line[2] == 'C' || line[2] == 'c')
+            {
+                play(uhhlowList[getuhh], time);
+                compiledOut+="\tplay(uhhlow,"+time+");\n"
+            }
+            if(line[3] == 'D' || line[3] == 'd')
+            {
+                play(UHHList[getuhh], time);
+                compiledOut+="\tplay(UHH,"+time+");\n"
+            }
+            if(line[4] == 'E' || line[4] == 'e')
+            {
+                play(crackfooList[getcrackfoo], time);
+                compiledOut+="\tplay(crackfoo,"+time+");\n"
+            }
+
+            time+=tempo;
+        }
+
+        compiledOut += "}\n<\/script>\n<\/html>"
+        document.getElementById("compBox").value = compiledOut;
+    }
+
+    // play a given sound at a given time.
+    function play(sound, time) {
+        setTimeout(function() {sound.play();}, time);
+    }
+
+</script>
+
+
+</body>
+</html>

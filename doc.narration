@@ -1,0 +1,206 @@
+1: begin html doc
+2: begin html body
+
+4: Signify the textbox below is for notes
+5: break
+6: identify the textbox to hold notes
+7-27: default notes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+28: end text box
+29: identify button to play the notes
+30: break
+31: break
+32: signify that the textbox below is for time between notes
+33: break
+34: identify textarea for ms between notes
+35: default value for textbox of time between notes
+36: end textbox for time between notes
+37: identify button to set time between notes
+38: break
+39: break
+40: Signify the below textbox contains compiled output
+41: break
+42: identify the textbox which will hold compiled output
+
+44: begin script
+
+46: initiate a string to hold compiled output
+
+48: get the uhh sound
+49: get the high version of the uhh sound
+50: get the low version of the uhh sound
+51: get the gnarly uhh sound
+52: get the fucked up sound of me opening a soda can
+
+
+
+56: init the list of uhh audio copies
+57: init the list of high uhh audio copies
+58: init the list of low uhh audio copies
+59: init the list of gnarly uhh audio copies
+60: init the list of the fucked up soda can audio copies
+61: set the value of uhh audio copies to be held
+62: set the value of soda can audio copies to be held
+63: begin the loop to make uhh copies
+
+65: push one copy of the uhh sound to uhh copy list
+66: push one copy of the high uhh sound to high uhh copy list
+67: push one copy of the low uhh sound to low uhh copy list
+68: push one copy of the gnarly uhh sound to gnarly uhh copy list
+
+70: begin the loop to make soda can audio copies
+
+
+
+
+
+76: boolean to siginify whether the uhh sound is ready
+77: boolean to siginify whether the high uhh sound is ready
+78: boolean to siginify whether the low uhh sound is ready
+79: boolean to siginify whether the gnarly uhh sound is ready
+80: boolean to siginify whether the soda can sound is ready
+
+82: when the last uhh sound is ready to be played through
+83: change its boolean value to true to reflect that
+
+85: when the last high uhh sound is ready to be played through
+86: change its boolean value to true to reflect that
+
+88: when the last low uhh sound is ready to be played through
+89: change its boolean value to true to reflect that
+
+91: when the last gnarly uhh sound is ready to be played through
+92: change its boolean value to true to reflect that
+
+94: when the soda can sound is ready to be played through
+95: change its boolean value to true to reflect that
+
+99: set the tempo according the default value in the tempo textbox
+
+101: function to set the time increment (tempo)
+
+103: set the tempo integer value to the parsed value of the tempo textbox
+104: ensure the time increment does not go below 100ms
+105: update the textbox to reflect the actual tempo set (in case user tried to set below minimum)
+
+
+
+109: function to read the notes textbox line by line
+
+111: if all the sounds are not ready according to their boolean values
+113: alert the user that the sounds are still loading
+114: return
+
+
+
+
+
+117: start defining the compiled output. Begin with the basic and necessary HTML content
+118: add (to compiled output) a button to play the sounds to the compiled output since you cannot play audio until a user has interacted with a website
+119-123: add (to compiled output) the sound URLs to the compiled output
+
+
+
+
+124-126: add (to compiled output) definition for function to play a particular sound with a delay
+
+
+127-131: add (to compiled output) the booleans which signify whether sounds are ready
+
+
+
+
+132-146: add (to compiled output) the event listeners to set the ready-or-not booleans to true when the sounds can play through
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+147: add (to compiled output) a definition for playing all sounds
+148-150: add (to compiled output) a check in the playall function to notify the user if the sounds are still loading
+
+
+151: Done adding to compiled output for now
+
+153: grab the text from the notes textbox
+154: split the text grabbed above into lines
+
+156: set the initial delay to 0
+157: for loop, one iteration for every line which we could split from the textbox of notes
+
+159: get the current line
+
+161: get the current uhhList index to use for audio playing
+162: get the current crackfooList index to use for audio playing
+
+164-166: if the first character of the line is A or a then play the uhh sound with the ms delay 
+        and add the code to the compiled output to play the uhh sound at that same delay
+
+
+
+169-173: if the second character of the line is B or b then play the high uhh sound with the ms delay and 
+        add the code to the compiled output to play the high uhh sound at that same delay
+
+
+
+174-178: if the third character of the line is C or c then play the low uhh sound with the ms delay and 
+        add the code to the compiled output to play the low uhh sound at that same delay
+
+
+
+179-183: if the fourth character of the line is D or d then play the gnarly uhh sound with the ms delay 
+        and add the code to the compiled output to play the gnarly uhh sound at that same delay
+
+
+
+184-188: if the fifth character of the line is E or e then play the soda can sound with the ms delay 
+        and add the code to the compiled output to play the soda can sound at that same delay
+
+
+
+
+190: add the ms increment to the tracked time
+
+
+193: add the finishing brack and the final necessary HTML content to the compiled output
+194: set the text in the textbox which contains compiled output equal to the final compiled output
+
+
+
+198: define the function which plays a sound at a given delay
+199: play the given sound with the given ms time delay
+
+
+202: end script
+
+
+205: end html body
+206: end html doc

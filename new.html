@@ -1,0 +1,68 @@
+<html>
+<head>
+Compiled
+</head>
+<body></body>
+<button onclick="playAll()">Play</button>
+<script>
+const uhh = new Audio("https://docs.google.com/uc?id=11Ild1Qp5DF-hPQiqNXdIDprG_3ZsKmDw&export=open");
+const uhhhigh = new Audio("https://docs.google.com/uc?id=1coJ-ebQOlDOrj0Lh7la-Wh8vkhqQXIoi&export=open");
+const uhhlow = new Audio("https://docs.google.com/uc?id=1VV8RIdHdVnW9AX1JUgCNEzitm-i0Vogi&export=open");
+const UHH = new Audio("https://docs.google.com/uc?id=1sJfCBSMuRky8lTIjIK3y6WMBQ0NWWV9U&export=open");
+const crackfoo = new Audio("https://docs.google.com/uc?id=1Z1FfduCw3_zr8c06IimrtSKgePPPjFzV&export=open");
+function play(sound, time) {
+	setTimeout(function() {sound.play();}, time);
+}
+uhhReady = false;
+uhhhighReady = false;
+uhhlowReady = false;
+UHHReady = false;
+crackfooReady = false;
+uhh.addEventListener("canplaythrough", event => {
+	uhhReady = true;
+})
+uhhhigh.addEventListener("canplaythrough", event => {
+	uhhhighReady = true;
+})
+uhhlow.addEventListener("canplaythrough", event => {
+	uhhlowReady = true;
+})
+UHH.addEventListener("canplaythrough", event => {
+	UHHReady = true;
+})
+crackfoo.addEventListener("canplaythrough", event => {
+	crackfooReady = true;
+})
+function playAll() {
+	if (!uhhReady || !uhhhighReady || !uhhlowReady || !UHHReady || !crackfooReady) {
+		alert("Sounds Loading...");
+		return;
+	}
+	play(uhh,0);
+	play(uhhhigh,250);
+	play(uhh,500);
+	play(uhhlow,500);
+	play(uhhhigh,750);
+	play(uhhlow,750);
+	play(UHH,1000);
+	play(crackfoo,1250);
+	play(uhhlow,1500);
+	play(uhh,2000);
+	play(uhh,2250);
+	play(uhhhigh,2500);
+	play(uhhlow,2750);
+	play(uhhlow,3000);
+	play(UHH,3000);
+	play(uhhhigh,3750);
+	play(UHH,3750);
+	play(crackfoo,4000);
+	play(uhh,4250);
+	play(uhhlow,4250);
+	play(uhhlow,4500);
+	play(uhhhigh,4750);
+	play(uhhlow,4750);
+	play(uhh,5000);
+	play(UHH,5000);
+}
+</script>
+</html>
